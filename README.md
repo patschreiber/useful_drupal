@@ -27,7 +27,7 @@ A general list of useful Drupal programming structures
 ```
 use Drupal\Core\Block\BlockBase;
 
-class ACGCapitalLinkBlock extends BlockBase {
+class BlockClassName extends BlockBase {
     public function build() {
         // Code here...
 
