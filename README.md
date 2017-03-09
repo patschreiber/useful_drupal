@@ -43,3 +43,15 @@ class BlockClassName extends BlockBase {
     }
 }
 ```
+
+### Events
+##### Kernel Events
+```
+KernelEvents::CONTROLLER; // The CONTROLLER event occurs once a controller was found for handling a request.
+KernelEvents::EXCEPTION; // The EXCEPTION event occurs when an uncaught exception appears.
+KernelEvents::FINISH_REQUEST; //The FINISH_REQUEST event occurs when a response was generated for a request.
+KernelEvents::REQUEST; // The REQUEST event occurs at the very beginning of request dispatching.
+KernelEvents::RESPONSE; // The RESPONSE event occurs once a response was created for replying to a request.
+KernelEvents::TERMINATE; // The TERMINATE event occurs once a response was sent.
+KernelEvents::VIEW; // The VIEW event occurs when the return value of a controller is not a Response instance.
+```
