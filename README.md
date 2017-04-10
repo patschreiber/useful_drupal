@@ -18,12 +18,9 @@ A general list of useful Drupal programming structures
 
 ##### Get user by custom field
 ```
-$query = new EntityFieldQuery();
-$query->entityCondition('entity_type', 'user')
-  ->fieldCondition('field_birthday', 'value', $birthday);
-
-$result = $query->execute();
-$users_ids = array_keys($result['user']);
+ $user_lookup = \Drupal::entityQuery('user')
+      ->condition('field_user_first_name', 'Foo');
+    $user_nids = $user_lookup->execute();
 ````
 
 ##### Check if user is autenticated or annonymous
