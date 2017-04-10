@@ -16,6 +16,16 @@ A general list of useful Drupal programming structures
 ##### Get Current User
 `\Drupal::currentUser()`
 
+##### Get user by custom field
+```
+$query = new EntityFieldQuery();
+$query->entityCondition('entity_type', 'user')
+  ->fieldCondition('field_birthday', 'value', $birthday);
+
+$result = $query->execute();
+$users_ids = array_keys($result['user']);
+````
+
 ##### Check if user is autenticated or annonymous
 `\Drupal::currentUser()->isAutheticated()`
 `\Drupal::currentUser()->isAnnonymous()`
