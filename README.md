@@ -51,6 +51,12 @@ class BlockClassName extends BlockBase {
 }
 ```
 
+### Redirects
+```
+return $this->redirect('<front>');
+```
+
+
 ### Events
 ##### Kernel Events
 ```
