@@ -33,6 +33,12 @@ A general list of useful Drupal programming structures
 ##### Get Current Node
 `\Drupal::routeMatch()->getParameter('node')`
 
+##### Get Node By Field
+```
+$nodes = \Drupal::entityTypeManager()
+  ->getStorage('node')
+  ->loadByProperties(array('field_machine_name' => $field_machine_name));
+```
 
 ### Blocks
 ##### Create block programmatically
