@@ -113,3 +113,10 @@ Important! When adding a new template to your theme, be sure to flush the theme 
 
 **More Information**
 https://api.drupal.org/api/drupal/core%21modules%21views%21views.theme.inc/group/views_templates/8.2.x
+
+#### Return Values 
+```getValue()``` returns an array.
+```->value``` returns field value.
+
+### Entity Field Names
+```$entity->get('field_name')->getValue();``` is synonymous with ```$entity->field_name->getValue();```.
