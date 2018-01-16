@@ -1,12 +1,14 @@
 # useful_drupal
-A general list of useful Drupal programming structures
+A general list and cheatsheet of useful Drupal programming structures and "gotchas."
 
+### Querying
 ##### Get all query parameters
 `\Drupal::request()->query->all()`
 
 ##### Get single query parameter
 `\Drupal::request()->query->>get('paramKey')`
 
+### Users
 ##### Load User By Id
 `\Drupal\user\Entity\User::load(**$id**)`
 
