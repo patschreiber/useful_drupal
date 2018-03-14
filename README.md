@@ -120,3 +120,11 @@ https://api.drupal.org/api/drupal/core%21modules%21views%21views.theme.inc/group
 
 #### Entity Field Names
 ```$entity->get('field_name')->getValue();``` is synonymous with ```$entity->field_name->getValue();```.
+
+#### Check Page Status Code
+```
+$status = \Drupal::requestStack()->getCurrentRequest()->attributes->get('exception');
+if ($status && $status->getStatusCode() == 404){ 
+  //... 
+}
+```
