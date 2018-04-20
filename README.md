@@ -29,6 +29,8 @@ A general list and cheatsheet of useful Drupal programming structures and "gotch
 `\Drupal::currentUser()->isAutheticated()`
 `\Drupal::currentUser()->isAnnonymous()`
 
+##### Get Full User object
+`$current_user_entity = User::load(\Drupal::currentUser()->id());`
 
 
 ### Nodes
