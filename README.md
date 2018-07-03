@@ -90,6 +90,14 @@ Example:
 drush -l local queue-run update_users --time-limit=600
 ```
 
+### Config
+##### Run 'install' config on an already-installed module
+Navigate to the devel tab on the admin site, then click the 'Execute PHP' tab.
+```
+$config_installer = \Drupal::service('config.installer');
+$config_installer->installDefaultConfig('module', 'mymodule_name');
+```
+
 ### Gotchas
 #### View Templates
 All views templates can be overridden with a variety of names, using the view, the display ID of the view, the display type of the view, or some combination thereof.
