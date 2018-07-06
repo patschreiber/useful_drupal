@@ -6,7 +6,7 @@ A general list and cheatsheet of useful Drupal programming structures and "gotch
 `\Drupal::request()->query->all()`
 
 ##### Get single query parameter
-`\Drupal::request()->query->>get('paramKey')`
+`\Drupal::request()->query->get('paramKey')`
 
 ### Users
 ##### Load User By Id
