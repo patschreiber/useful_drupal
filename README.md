@@ -44,6 +44,22 @@ $nodes = \Drupal::entityTypeManager()
   ->loadByProperties(array('field_machine_name' => $field_machine_name));
 ```
 
+##### Get All Entity References (returns array)
+```
+$referenced_entities = $node->get('field_entity_ref')->referencedEntities();
+```
+
+##### Get Referenced Object (Node, as an example)
+```
+    $referencedEntity = $association
+      ->get('field_entity_ref')
+      ->first()
+      ->get('entity')
+      ->getTarget()
+      ->getValue();
+```
+
+
 ### Blocks
 ##### Create block programmatically
 ```
