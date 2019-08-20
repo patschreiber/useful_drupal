@@ -69,6 +69,9 @@ $referencedEntity = $association
 
 ### Paragraphs
 
+##### Load Paragraph
+` \Drupal::entityManager()->getStorage('paragraph')->load($pid)`
+
 ##### Create multiple new paragraphs
 ```
 $multiParagraph1 = Paragraph::create([
