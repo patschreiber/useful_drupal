@@ -8,6 +8,8 @@ A general list and cheatsheet of useful Drupal programming structures and "gotch
 ##### Get single query parameter
 `\Drupal::request()->query->get('paramKey')`
 
+## Entities
+
 ### Users
 ##### Load User By Id
 `\Drupal\user\Entity\User::load(**$id**)`
@@ -15,7 +17,7 @@ A general list and cheatsheet of useful Drupal programming structures and "gotch
 ##### Create User
 `\Drupal\user\Entity\User::create()`
 
-##### Get Current User
+##### Get Current User AccountInterface
 `\Drupal::currentUser()`
 
 ##### Get user by custom field
@@ -23,7 +25,7 @@ A general list and cheatsheet of useful Drupal programming structures and "gotch
  $user_lookup = \Drupal::entityQuery('user')
       ->condition('field_user_first_name', 'Foo');
     $user_nids = $user_lookup->execute();
-````
+```
 
 ##### Check if user is autenticated or annonymous
 `\Drupal::currentUser()->isAutheticated()`
@@ -34,8 +36,13 @@ A general list and cheatsheet of useful Drupal programming structures and "gotch
 
 
 ### Nodes
+
+##### Load a node
+`\Drupal::entityTypeManager()->getStorage('node')->load($nid);`
+
+
 ##### Get Current Node
-`\Drupal::routeMatch()->getParameter('node')`
+`\Drupal::routeMatch()->getParameter('node');`
 
 ##### Get Node By Field
 ```
@@ -46,21 +53,50 @@ $nodes = \Drupal::entityTypeManager()
 
 ##### Get All Entity References (returns array)
 ```
-$referenced_entities = $node->get('field_entity_ref')->referencedEntities();
+$referenced_entities = $node->get('field_entity_ref')
+  ->referencedEntities();
 ```
 
 ##### Get Referenced Object (Node, as an example)
 ```
-    $referencedEntity = $association
-      ->get('field_entity_ref')
-      ->first()
-      ->get('entity')
-      ->getTarget()
-      ->getValue();
+$referencedEntity = $association
+  ->get('field_entity_ref')
+  ->first()
+  ->get('entity')
+  ->getTarget()
+  ->getValue();
 ```
 
+### Paragraphs
 
-### Blocks
+##### Create multiple new paragraphs
+```
+$multiParagraph1 = Paragraph::create([
+  'type' => 'paragraph_machine_name',
+  'field_machine_name' => 'Field value',
+]);
+$multiParagraph2 = Paragraph::create([
+  'type' => 'paragraph_machine_name',
+  'field_machine_name' => 'Field value',
+]);
+$multiParagraph1->save();
+$multiParagraph2->save();
+```
+
+##### Add multiple Paragraphs to an entity ref field
+```
+$node->paragraph_entity_ref_field[] = [
+  'target_id' => $multiParagraph1->id(),
+  'target_revision_id' => $multiParagraph1->getRevisionId(),
+];
+
+$node->paragraph_entity_ref_field[] = [
+  'target_id' => $multiParagraph2->id(),
+  'target_revision_id' => $multiParagraph2->getRevisionId(),
+];
+```
+
+## Blocks
 ##### Create block programmatically
 ```
 use Drupal\Core\Block\BlockBase;
@@ -96,7 +132,7 @@ KernelEvents::VIEW; // The VIEW event occurs when the return value of a controll
 ```
 
 ### Queues
-##### Run a queue from drush. 
+##### Run a queue from drush.
 Accepts 1 argument, queue_name, and 1 option, --time-limit (in seconds)
 ```
 drush -l environment queue-run queue_name --time-limit=seconds
@@ -108,6 +144,10 @@ drush -l local queue-run update_users --time-limit=600
 
 ### Config
 ##### Run 'install' config on an already-installed module
+`$ drush cim -y --partial --source=modules/_custom/my_module/config/install/`
+
+alternatively,
+
 Navigate to the devel tab on the admin site, then click the 'Execute PHP' tab.
 ```
 $config_installer = \Drupal::service('config.installer');
@@ -149,7 +189,7 @@ Important! When adding a new template to your theme, be sure to flush the theme 
 ##### More Information
 https://api.drupal.org/api/drupal/core%21modules%21views%21views.theme.inc/group/views_templates/8.2.x
 
-#### Return Values 
+#### Return Values
 ```getValue()``` returns an array.
 ```->value``` returns field value.
 
@@ -159,7 +199,7 @@ https://api.drupal.org/api/drupal/core%21modules%21views%21views.theme.inc/group
 #### Check Page Status Code
 ```
 $status = \Drupal::requestStack()->getCurrentRequest()->attributes->get('exception');
-if ($status && $status->getStatusCode() == 404){ 
-  //... 
+if ($status && $status->getStatusCode() == 404){
+  //...
 }
 ```
