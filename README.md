@@ -27,7 +27,7 @@ A general list and cheatsheet of useful Drupal programming structures and "gotch
     $user_nids = $user_lookup->execute();
 ```
 
-##### Check if user is autenticated or annonymous
+##### Check if user is authenticated or annonymous
 `\Drupal::currentUser()->isAutheticated()`
 `\Drupal::currentUser()->isAnnonymous()`
 
@@ -65,6 +65,11 @@ $referencedEntity = $association
   ->get('entity')
   ->getTarget()
   ->getValue();
+```
+
+##### Delete All Nodes By Type
+```
+$ drush genc 0 —kill –types=article 
 ```
 
 ### Paragraphs
